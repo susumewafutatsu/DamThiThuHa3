@@ -24,7 +24,7 @@ public class Player extends Entity{
     public int hasKey = 0;
 
     public Player(GamePanel gp, KeyHandler keyH){
-
+        super(gp);
         this.gp = gp;
         this.keyH = keyH;
         screenX = gp.screenWidth/2 - (gp.tileSize/2);

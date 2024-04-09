@@ -1,5 +1,6 @@
 package Main;
 
+import entitty.NPC_chase;
 import object.*;
 import tile.TileManager;
 
@@ -36,5 +37,10 @@ public class AssetSetter {
         gp.obj[4] = new OBJ_Coffin(gp);
         gp.obj[4].worldX = 4 * gp.tileSize;
         gp.obj[4].worldY = 2 * gp.tileSize;
+    }
+    public void setNPC() {
+        gp.npc[0] = new NPC_chase(gp);
+        gp.npc[0].worldX = gp.tileSize * 21;
+        gp.npc[0].worldY = gp.tileSize * 21;
     }
 }
