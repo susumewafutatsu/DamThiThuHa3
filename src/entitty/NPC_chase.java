@@ -15,7 +15,6 @@ public class NPC_chase extends Entity {
     }
     public void getImage(){
         try {
-
             up1 = ImageIO.read(getClass().getResourceAsStream("/player/main_up_1.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/player/main_up_2.png"));
             up3 = ImageIO.read(getClass().getResourceAsStream("/player/main_up_3.png"));
@@ -45,11 +44,9 @@ public class NPC_chase extends Entity {
             int i = new Random().nextInt(100)+1;
             if(i < 50){
                 onPath = true;
+                speed = 4;
             }
         }
-//        if (onPath == true && tileDistance > 20){
-//            onPath = false;
-//        }
     }
     public void setAction() {
         if (onPath == true) {
@@ -105,11 +102,11 @@ public class NPC_chase extends Entity {
                 else if (enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
                     direction = "down";
                 }
-                else if (enTopY >= nextX && enBottomY < nextY + gp.tileSize) {
-                    if (enLeftX > enRightX) {
+                else if (enTopY >= nextY && enBottomY < nextY + gp.tileSize) {
+                    if (enLeftX > nextX) {
                         direction = "left";
                     }
-                    if (enLeftX < enRightX) {
+                    if (enLeftX < nextX) {
                         direction = "right";
                     }
                 }
@@ -146,11 +143,11 @@ public class NPC_chase extends Entity {
                     }
                 }
 
-                int nextCol = gp.pfinder.pathList.get(0).col;
-                int nextRow = gp.pfinder.pathList.get(0).row;
-                if(nextCol == goalCol && nextRow == goalRow){
-                    onPath = false;
-                }
+//                int nextCol = gp.pfinder.pathList.get(0).col;
+//                int nextRow = gp.pfinder.pathList.get(0).row;
+//                if(nextCol == goalCol && nextRow == goalRow){
+//                    onPath = false;
+//                }
             }
     }
 }
