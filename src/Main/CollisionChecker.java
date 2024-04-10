@@ -120,4 +120,64 @@ public class CollisionChecker {
         }
         return  index;
     }
+    public int checkEntity(Entity entity, Entity[] target) {
+        int index = 999;
+
+        for(int i = 0; i < target.length; i++) {
+
+            if(target[i] != null) {
+
+                entity.soliArea.x = entity.worldX + entity.soliArea.x;
+                entity.soliArea.y = entity.worldY + entity.soliArea.y;
+
+                target[i].soliArea.x = target[i].worldX + target[i].soliArea.x;
+                target[i].soliArea.y = target[i].worldY + target[i].soliArea.y;
+
+                switch(entity.direction) {
+                    case "up":
+                        entity.soliArea.y -= entity.speed;
+                        if(entity.soliArea.intersects(target[i].soliArea)) {
+
+                            entity.collisionOn = true;
+                            index = i;
+                        }
+                        break;
+                    case "down":
+                        entity.soliArea.y += entity.speed;
+                        if(entity.soliArea.intersects(target[i].soliArea)) {
+
+                            entity.collisionOn = true;
+                            index = i;
+
+                        }
+                        break;
+                    case "left":
+                        entity.soliArea.x -= entity.speed;
+                        if(entity.soliArea.intersects(target[i].soliArea)) {
+
+                            entity.collisionOn = true;
+                            index = i;
+
+                        }
+                        break;
+                    case "right":
+                        entity.soliArea.x += entity.speed;
+                        if(entity.soliArea.intersects(target[i].soliArea)) {
+
+                            entity.collisionOn = true;
+                            index = i;
+
+                            break;
+                        }
+                }
+                entity.soliArea.x = entity.soliAreaDefaultX;
+                entity.soliArea.y = entity.soliAreaDefaultY;
+                target[i].soliArea.x = target[i].soliAreaDefaultX;
+                target[i].soliArea.y = target[i].soliAreaDefaultY;
+            }
+        }
+
+        return index;
+
+    }
 }
