@@ -28,6 +28,7 @@ public class Entity {
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
+        gp.cChecker.checkPlayer(this);
     }
     public void update() {
         setAction();
@@ -113,5 +114,52 @@ public class Entity {
             }
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
         }
+    }
+    public void checkPlayer(Entity entity) {
+
+        entity.soliArea.x = entity.worldX + entity.soliArea.x;
+        entity.soliArea.y = entity.worldY + entity.soliArea.y;
+
+        gp.player.soliArea.x = gp.player.worldX + gp.player.soliArea.x;
+        gp.player.soliArea.y = gp.player.worldY + gp.player.soliArea.y;
+
+        switch(entity.direction) {
+            case "up":
+                entity.soliArea.y -= entity.speed;
+                if(entity.soliArea.intersects(gp.player.soliArea)) {
+
+                    entity.collisionOn = true;
+
+                }
+                break;
+            case "down":
+                entity.soliArea.y += entity.speed;
+                if(entity.soliArea.intersects(gp.player.soliArea)) {
+
+                    entity.collisionOn = true;
+
+                }
+                break;
+            case "left":
+                entity.soliArea.x -= entity.speed;
+                if(entity.soliArea.intersects(gp.player.soliArea)) {
+
+                    entity.collisionOn = true;
+
+                }
+                break;
+            case "right":
+                entity.soliArea.x += entity.speed;
+                if(entity.soliArea.intersects(gp.player.soliArea)) {
+
+                    entity.collisionOn = true;
+
+                    break;
+                }
+        }
+        entity.soliArea.x = entity.soliAreaDefaultX;
+        entity.soliArea.y = entity.soliAreaDefaultY;
+        gp.player.soliArea.x = gp.player.soliAreaDefaultX;
+        gp.player.soliArea.y = gp.player.soliAreaDefaultY;
     }
 }

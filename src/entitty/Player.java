@@ -45,7 +45,7 @@ public class Player extends Entity{
         //let's start
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
-        speed = 4;
+        speed = 6;
         direction = "down";
     }
     public  void getPlayerImage(){
@@ -95,6 +95,7 @@ public class Player extends Entity{
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
+
             //IF COLLISION IS FALSE, PLAYER CAN MOVE
             if (collisionOn == false){
                 switch (direction){
@@ -143,6 +144,7 @@ public class Player extends Entity{
 
         }
     }
+
     public void draw(Graphics2D g2){
         BufferedImage image = null;
 
