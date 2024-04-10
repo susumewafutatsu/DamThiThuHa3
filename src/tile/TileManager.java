@@ -85,6 +85,13 @@ public class TileManager {
             setup(49,"table_b_5",true);
             setup(50,"table_b_6",true);
             setup(51,"table_b_7",true);
+        setup(52,"floor_shool",false);
+        setup(53,"flower-1",false);
+        setup(54,"flower-2",false);
+        setup(55,"flower-3",true);
+        setup(56,"flower-4",true);
+        setup(57,"flower-5",true);
+        setup(58,"wall_left_8",true);
     }
     public void  setup(int index, String imageName, boolean collision){
         UtilityTool uTool = new UtilityTool();

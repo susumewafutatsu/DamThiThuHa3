@@ -40,7 +40,7 @@ public class AssetSetter {
     }
     public void setNPC() {
         gp.npc[0] = new NPC_chase(gp);
-        gp.npc[0].worldX = gp.tileSize * 21;
-        gp.npc[0].worldY = gp.tileSize * 21;
+        gp.npc[0].worldX = gp.tileSize * 10;
+        gp.npc[0].worldY = gp.tileSize * 10;
     }
 }

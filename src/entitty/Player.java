@@ -31,8 +31,8 @@ public class Player extends Entity{
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
         //Size box character
         soliArea = new Rectangle();
-        soliArea.x = (gp.tileSize/2)-17;
-        soliArea.y = (gp.tileSize/16*4);
+        soliArea.x = (gp.tileSize/2)-14;
+        soliArea.y = (gp.tileSize/16*10);
         soliAreaDefaultX = soliArea.x;
         soliAreaDefaultY = soliArea.y;
         soliArea.width = gp.tileSize - soliArea.x * 2;
@@ -45,7 +45,7 @@ public class Player extends Entity{
         //let's start
         worldX = gp.tileSize * 23;
         worldY = gp.tileSize * 21;
-        speed = 6;
+        speed = 4;
         direction = "down";
     }
     public  void getPlayerImage(){
