@@ -3,6 +3,7 @@ package Main;
 import ai.Pathfinder;
 import entitty.Entity;
 import entitty.Player;
+import environment.EnvironmentManager;
 import object.SuperObject;
 import tile.TileManager;
 
@@ -42,6 +43,7 @@ public class GamePanel extends JPanel implements Runnable{
     public  AssetSetter aSetter = new AssetSetter(this);
     public UI ui = new UI(this);
     public Pathfinder pfinder = new Pathfinder(this);
+    EnvironmentManager eManager = new EnvironmentManager(this);
     Thread gameThread;
 
     //ENTITY AND OBJECT
@@ -68,6 +70,7 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setNPC();
         //playMusic(0);
         gameState = playState;
+        eManager.setup();
     }
 
     public void startGameThread(){
@@ -140,6 +143,7 @@ public class GamePanel extends JPanel implements Runnable{
         }
         //PLAYER
         player.draw(g2);
+        eManager.draw(g2);
 
         //UI
         ui.draw(g2);
