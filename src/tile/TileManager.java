@@ -21,7 +21,7 @@ public class TileManager {
 
         this.gp = gp;
 
-        tile = new Tile[60];
+        tile = new Tile[70];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
 
         getTileImage();
@@ -86,12 +86,16 @@ public class TileManager {
             setup(50,"table_b_6",true);
             setup(51,"table_b_7",true);
         setup(52,"floor_shool",false);
-        setup(53,"flower-1",false);
-        setup(54,"flower-2",false);
+        setup(53,"flower-1",true);
+        setup(54,"flower-2",true);
         setup(55,"flower-3",true);
         setup(56,"flower-4",true);
         setup(57,"flower-5",true);
         setup(58,"wall_left_8",true);
+        setup(59,"table_c_1",true);
+        setup(60,"table_c_2",true);
+        setup(61,"table_c_3",true);
+        setup(62,"table_c_4",true);
     }
     public void  setup(int index, String imageName, boolean collision){
         UtilityTool uTool = new UtilityTool();

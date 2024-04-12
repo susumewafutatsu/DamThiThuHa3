@@ -11,8 +11,8 @@ public class Sound {
 
     public  Sound(){
 
-        soundURL[0] = getClass().getResource("/sound/wrong-place-129242.mp3");
-        soundURL[1] = getClass().getResource("/sound/jump-scare_1-66858.mp3");
+        soundURL[0] = getClass().getResource("/sound/wrong-place-129242.wav");
+        soundURL[1] = getClass().getResource("/sound/jump-scare_1-66858.wav");
     }
     public  void  setFile(int i){
         try{

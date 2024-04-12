@@ -9,7 +9,7 @@ public class NPC_chase extends Entity {
     public NPC_chase(GamePanel gp) {
         super(gp);
         direction = "down";
-        speed = 3;
+        speed = 4;
         getImage();
     }
     public void getImage(){
@@ -46,7 +46,8 @@ public class NPC_chase extends Entity {
             int i = new Random().nextInt(100)+1;
             if(i < 50){
                 onPath = true;
-                speed = 5;
+                speed = 7;
+                gp.playSE(1);
             }
         }
 
