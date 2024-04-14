@@ -4,8 +4,13 @@ import object.OBJ_Head;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 
-public class UI {
+
+public class UI  extends JPanel{
 
     GamePanel gp;
     Graphics2D g2;
@@ -15,8 +20,15 @@ public class UI {
     public String message ="";
     int messageCounter = 0;
     public boolean gameFinished = false;
+    public int commanNum = 0;
+    public int titleScreenState = 0;
 
+    Image image1;
 
+    public UI(){
+        image1 = new ImageIcon(this.getClass().getResource("/tiles/116183.png")).getImage();
+        this.setPreferredSize(new Dimension(gp.screenWidth, gp.screenHeight));
+    }
     public UI(GamePanel gp){
         this.gp = gp;
         arial_40 = new Font("Arial",Font.PLAIN,40);
@@ -37,6 +49,11 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.white);
 
+        //TITLE STATE
+        if(gp.gameState == gp.titleState){
+            drawTitleScreen();
+        }
+        //PLAY STATE
         if (gp.gameState == gp.playState){
             //DO playState stuff later
             if (gameFinished == true){
@@ -81,8 +98,8 @@ public class UI {
         }
     }
     public void drawGameOverScreen(){
-        g2.setColor(new Color(0,0,0,150));
-        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+//        g2.setColor(new Color(0,0,0,150));
+//        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         int x;
         int y;
         String text;
@@ -107,6 +124,52 @@ public class UI {
         x = getXforCenteredText(text);
         y += 55;
         g2.drawString (text, x, y);
+    }
+    public void drawTitleScreen(){
+        g2.setColor(new Color(0,0,0));
+        g2.fillRect(0,0,gp.screenWidth, gp.screenHeight);
+//        g2.drawImage(image1, 0, 0, this);
+        //TITLE NAME
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,70F));
+        String text = "Karada Sagashi";
+        int x = gp.tileSize*5;
+        int y = gp.tileSize*2;
+        //SHADOW
+        g2.setColor(Color.gray);
+        g2.drawString(text,x+5,y+5);
+        //MAIN COLOR
+        g2.setColor(Color.white);
+        g2.drawString(text,x,y);
+        //MAIN IMAGE
+        x = gp.screenWidth/2 - (gp.tileSize*2)/2;
+        y+= gp.tileSize/2;
+        g2.drawImage(gp.player.down2,x,y, gp.tileSize*2,gp.tileSize*2,null);
+        //MENU
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,35F));
+
+        text = "NEW GAME";
+        x = gp.tileSize*7;
+        y = gp.tileSize*5;
+        if (commanNum == 0){
+            g2.drawString(">",x-gp.tileSize/2,y);
+        }
+
+        g2.drawString(text, x, y);
+        text = "SCORE";
+        x = gp.tileSize*7;
+        y = gp.tileSize/12*65;
+        if (commanNum == 1){
+            g2.drawString(">",x-gp.tileSize/2,y);
+        }
+
+        g2.drawString(text, x, y);
+        text = "QUIT";
+        x = gp.tileSize*7;
+        y = gp.tileSize/12*70;
+        g2.drawString(text, x, y);
+        if (commanNum == 2){
+            g2.drawString(">",x-gp.tileSize/2,y);
+        }
     }
     public  void drawPauseScreen(){
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN,80F));
