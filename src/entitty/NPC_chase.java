@@ -41,12 +41,12 @@ public class NPC_chase extends Entity {
         int yDistance = Math.abs(worldY - gp.player.worldY);
         int tileDistance = (xDistance + yDistance)/gp.tileSize;
 
-        if(onPath == false && tileDistance < 7){
+        if(onPath == false && tileDistance < 8){
 
             int i = new Random().nextInt(100)+1;
             if(i < 50){
                 onPath = true;
-                speed = 5;
+                speed = 6;
             }
         }
 
