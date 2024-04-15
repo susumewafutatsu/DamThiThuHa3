@@ -177,7 +177,6 @@ public class UI  extends JPanel{
         String text = "PAUSED";
         int x = getXforCenteredText(text);
         int y= gp.screenHeight/2;
-
         g2.drawString(text, x, y);
     }
     public  int getXforCenteredText(String text){
