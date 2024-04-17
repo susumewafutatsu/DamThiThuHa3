@@ -95,7 +95,7 @@ public class Player extends Entity{
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
-
+            gp.keyH.enterPressed = false;
             //IF COLLISION IS FALSE, PLAYER CAN MOVE
             if (collisionOn == false){
                 switch (direction){
@@ -144,7 +144,11 @@ public class Player extends Entity{
 
         }
     }
-
+    public void setDefaultPositions(){
+        worldX = gp.tileSize*23;
+        worldY = gp.tileSize*21;
+        direction = "down";
+    }
     public void draw(Graphics2D g2){
         BufferedImage image = null;
 

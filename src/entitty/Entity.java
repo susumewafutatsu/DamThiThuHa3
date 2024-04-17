@@ -15,7 +15,7 @@ public class Entity {
     public String direction;
     public int spriteCounter = 0;
     public int spriteNum = 1;
-    public Rectangle soliArea = new Rectangle(0,0,48,48) ;;
+    public Rectangle soliArea = new Rectangle(0,0,90,90) ;;
     public int soliAreaDefaultX,soliAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
@@ -28,7 +28,6 @@ public class Entity {
         collisionOn = false;
         gp.cChecker.checkTile(this);
         gp.cChecker.checkObject(this, false);
-        gp.cChecker.checkPlayer(this);
     }
     public void update() {
         setAction();

@@ -116,14 +116,20 @@ public class UI  extends JPanel{
         // Retry
         g2.setFont(g2.getFont().deriveFont(30f));
         text = "Retry";
-        x= getXforCenteredText(text);
+        x= 450;
         y += gp.tileSize*2;
         g2.drawString (text, x, y);
+        if (commanNum == 0){
+            g2.drawString(">",x-40,y);
+        }
         // Back to the title screen text = "Quit";
         text = "Quit";
-        x = getXforCenteredText(text);
+        x = 450;
         y += 55;
-        g2.drawString (text, x, y);
+        g2.drawString (text,x, y);
+        if (commanNum == 1){
+            g2.drawString(">",x-40,y);
+        }
     }
     public void drawTitleScreen(){
         g2.setColor(new Color(0,0,0));
