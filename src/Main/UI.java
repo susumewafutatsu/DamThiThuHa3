@@ -23,12 +23,9 @@ public class UI  extends JPanel{
     public int commanNum = 0;
     public int titleScreenState = 0;
 
-    Image image1;
+    BufferedImage image1 = null;
+    BufferedImage image2 = null;
 
-    public UI(){
-        image1 = new ImageIcon(this.getClass().getResource("/tiles/116183.png")).getImage();
-        this.setPreferredSize(new Dimension(gp.screenWidth, gp.screenHeight));
-    }
     public UI(GamePanel gp){
         this.gp = gp;
         arial_40 = new Font("Arial",Font.PLAIN,40);
@@ -125,49 +122,57 @@ public class UI  extends JPanel{
         y += 55;
         g2.drawString (text, x, y);
     }
+    public void drawInstructions(){
+        try{
+            image2 = ImageIO.read(getClass().getResourceAsStream("/tiles/pngtree-3d-rendered-classroom-with-blood-a-terrifying-and-eerie.png"));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        g2.drawImage(image2, 0, 0, gp.screenWidth,gp.screenHeight, null);
+    }
     public void drawTitleScreen(){
-        g2.setColor(new Color(0,0,0));
-        g2.fillRect(0,0,gp.screenWidth, gp.screenHeight);
-//        g2.drawImage(image1, 0, 0, this);
-        //TITLE NAME
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,70F));
-        String text = "Karada Sagashi";
-        int x = gp.tileSize*5;
-        int y = gp.tileSize*2;
-        //SHADOW
-        g2.setColor(Color.gray);
-        g2.drawString(text,x+5,y+5);
-        //MAIN COLOR
-        g2.setColor(Color.white);
-        g2.drawString(text,x,y);
-        //MAIN IMAGE
-        x = gp.screenWidth/2 - (gp.tileSize*2)/2;
-        y+= gp.tileSize/2;
-        g2.drawImage(gp.player.down2,x,y, gp.tileSize*2,gp.tileSize*2,null);
-        //MENU
-        g2.setFont(g2.getFont().deriveFont(Font.BOLD,35F));
+//        g2.setColor(new Color(0,0,0));
+//        g2.fillRect(0,0,gp.screenWidth, gp.screenHeight);
+        try{
+            image1 = ImageIO.read(getClass().getResourceAsStream("/tiles/116183.png"));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        g2.drawImage(image1, 0, 0, gp.screenWidth,gp.screenHeight, null);
 
+        //TITLE NAME
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,40F));
+        int x,y;String text;
         text = "NEW GAME";
-        x = gp.tileSize*7;
+        x = gp.tileSize*2;
         y = gp.tileSize*5;
         if (commanNum == 0){
             g2.drawString(">",x-gp.tileSize/2,y);
         }
 
         g2.drawString(text, x, y);
-        text = "SCORE";
-        x = gp.tileSize*7;
-        y = gp.tileSize/12*65;
+        text = "INSTRUCTIONS";
+        x = gp.tileSize*2;
+        y = gp.tileSize/12*80;
         if (commanNum == 1){
             g2.drawString(">",x-gp.tileSize/2,y);
         }
 
         g2.drawString(text, x, y);
-        text = "QUIT";
-        x = gp.tileSize*7;
-        y = gp.tileSize/12*70;
+        text = "SCORE";
+        x = gp.tileSize*12;
+        y = gp.tileSize*5;
         g2.drawString(text, x, y);
         if (commanNum == 2){
+            g2.drawString(">",x-gp.tileSize/2,y);
+        }
+
+        g2.drawString(text, x, y);
+        text = "QUIT";
+        x = gp.tileSize*12;
+        y = gp.tileSize/12*80;
+        g2.drawString(text, x, y);
+        if (commanNum == 3){
             g2.drawString(">",x-gp.tileSize/2,y);
         }
     }

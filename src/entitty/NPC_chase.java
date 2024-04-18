@@ -14,18 +14,18 @@ public class NPC_chase extends Entity {
     }
     public void getImage(){
         try {
-            up1 = ImageIO.read(getClass().getResourceAsStream("/player/main_up_1.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/player/main_up_2.png"));
-            up3 = ImageIO.read(getClass().getResourceAsStream("/player/main_up_3.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/player/main_down_1.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/player/main_down_2.png"));
-            down3 = ImageIO.read(getClass().getResourceAsStream("/player/main_down_3.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/player/main_left_1.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/player/main_left_2.png"));
-            left3 = ImageIO.read(getClass().getResourceAsStream("/player/main_left_3.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/player/main_right_1.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/player/main_right_2.png"));
-            right3 = ImageIO.read(getClass().getResourceAsStream("/player/main_right_3.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("/NPC/NPC_up_1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/NPC/NPC_up_2.png"));
+            up3 = ImageIO.read(getClass().getResourceAsStream("/NPC/NPC_up_3.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("/NPC/NPC_down_1.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("/NPC/NPC_down_2.png"));
+            down3 = ImageIO.read(getClass().getResourceAsStream("/NPC/NPC_down_3.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("/NPC/NPC_left_1.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("/NPC/NPC_left_2.png"));
+            left3 = ImageIO.read(getClass().getResourceAsStream("/NPC/NPC_left_3.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("/NPC/NPC_right_1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/NPC/NPC_right_2.png"));
+            right3 = ImageIO.read(getClass().getResourceAsStream("/NPC/NPC_right_3.png"));
 
         }catch(IOException e){
             e.printStackTrace();
