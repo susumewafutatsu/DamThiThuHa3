@@ -27,6 +27,7 @@ public class TileManager {
         getTileImage();
         loadMap("/map/world01.txt");
     }
+
     public  void  getTileImage(){
             //floor
             setup(0,"floor_class",false);
@@ -96,6 +97,12 @@ public class TileManager {
         setup(60,"table_c_2",true);
         setup(61,"table_c_3",true);
         setup(62,"table_c_4",true);
+        setup(63, "floor1",true);
+        setup(64,"cua1",true);
+        setup(65,"cua2",true);
+        setup(66, "wall_1",true);
+        setup(67,"wall_2",true);
+        setup(68,"wall_3",true);
     }
     public void  setup(int index, String imageName, boolean collision){
         UtilityTool uTool = new UtilityTool();

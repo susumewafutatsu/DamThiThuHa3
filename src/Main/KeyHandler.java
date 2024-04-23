@@ -10,7 +10,6 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener{
 
     GamePanel gp;
-    UI ui;
     public boolean upPressed, downPressed, leftPressed, rightPressed;
 
     boolean checkDrawTime = false;
@@ -50,28 +49,23 @@ public class KeyHandler implements KeyListener{
             if (code == KeyEvent.VK_W){
                 gp.ui.commanNum--;
                 if(gp.ui.commanNum<0){
-                    gp.ui.commanNum = 3;
+                    gp.ui.commanNum = 2;
                 }
             }
             if (code == KeyEvent.VK_S){
                 gp.ui.commanNum++;
-                if(gp.ui.commanNum>3){
+                if(gp.ui.commanNum>2){
                     gp.ui.commanNum = 0;
                 }
             }
             if (code == KeyEvent.VK_ENTER){
                 if(gp.ui.commanNum == 0){
-
                     gp.gameState = gp.playState;
-                    gp.playMusic(0);
                 }
                 if(gp.ui.commanNum == 1){
-
-                }
-                if(gp.ui.commanNum == 2){
                     //
                 }
-                if(gp.ui.commanNum == 3){
+                if(gp.ui.commanNum == 2){
                     System.exit(0);
                 }
             }

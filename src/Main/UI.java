@@ -6,7 +6,6 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
 
 
@@ -22,6 +21,7 @@ public class UI  extends JPanel{
     public boolean gameFinished = false;
     public int commanNum = 0;
     public int titleScreenState = 0;
+    public int day = 0;
 
     BufferedImage image1 = null;
     BufferedImage image2 = null;
@@ -93,46 +93,86 @@ public class UI  extends JPanel{
         if (gp.gameState == gp.gameOverState){
             drawGameOverScreen();
         }
+        //Win state
+        if(gp.gameState == gp.gameWinState){
+            drawGameWinScreen();
+        }
+        //Option state
+        if(gp.gameState == gp.optionState){
+            drawOptionScreen();
+        }
     }
     public void drawGameOverScreen(){
 //        g2.setColor(new Color(0,0,0,150));
 //        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
-        int x;
-        int y;
-        String text;
-        g2.setFont(g2.getFont().deriveFont (Font.BOLD, 80f));
-        text = "Game Over";
-        // Shadow
-        g2.setColor(Color.black);
-        x = getXforCenteredText(text);
-        y = gp.tileSize*4;
-        g2.drawString (text,x,y);
-        //Main
-        g2.setColor(Color.white);
-        g2.drawString(text,x-4,y-4);
-        // Retry
-        g2.setFont(g2.getFont().deriveFont(30f));
-        text = "Retry";
-        x= getXforCenteredText(text);
-        y += gp.tileSize*2;
-        g2.drawString (text, x, y);
-        // Back to the title screen text = "Quit";
-        text = "Quit";
-        x = getXforCenteredText(text);
-        y += 55;
-        g2.drawString (text, x, y);
-    }
-    public void drawInstructions(){
         try{
-            image2 = ImageIO.read(getClass().getResourceAsStream("/tiles/pngtree-3d-rendered-classroom-with-blood-a-terrifying-and-eerie.png"));
+            image1 = ImageIO.read(getClass().getResourceAsStream("/tiles/Untitled.png"));
         }catch (IOException e){
             e.printStackTrace();
         }
-        g2.drawImage(image2, 0, 0, gp.screenWidth,gp.screenHeight, null);
+        g2.drawImage(image1, 0, 0, gp.screenWidth,gp.screenHeight, null);
+        int x;
+        int y;
+        String text;
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,40F));
+        g2.setColor(Color.red);
+        day=day+1;
+        text = "Day";
+        x = gp.tileSize*12;
+        y = gp.tileSize*5;
+        g2.drawString(text+day, x, y);
+        // Retry
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,40F));
+        g2.setColor(Color.red);
+        text = "Continue";
+        x = gp.tileSize*12;
+        y = gp.tileSize*6;
+        g2.drawString(text, x, y);
+        if (commanNum == 0){
+            g2.drawString(">",x-40,y);
+        }
+        // Back to the title screen text = "Quit";
+        text = "Quit";
+        x = gp.tileSize*12;
+        y = gp.tileSize/12*80;
+        g2.drawString(text, x, y);
+        if (commanNum == 1){
+            g2.drawString(">",x-40,y);
+        }
     }
+    public void drawGameWinScreen(){
+        int x;
+        int y;
+        String text;
+        try{
+            image1 = ImageIO.read(getClass().getResourceAsStream("/tiles/1.png"));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        g2.drawImage(image1, 0, 0, null);
+        g2.setFont(g2.getFont().deriveFont (Font.BOLD, 80f));
+        text = "TOBE CONTINUE...";
+        // Shadow
+        g2.setColor(Color.black);
+        x = gp.tileSize*10;
+        y = gp.tileSize*7;
+        g2.drawString (text,x,y);
+        //Main
+        g2.setColor(Color.red);
+        g2.drawString(text,x-4,y-4);
+        if (commanNum == 0){
+            g2.drawString(">",x-40,y);
+        }
+    }
+//    public void drawInstructions(){
+//        try{
+//            image2 = ImageIO.read(getClass().getResourceAsStream("/tiles/pngtree-3d-rendered-classroom-with-blood-a-terrifying-and-eerie.png"));
+//        }catch (IOException e){
+//            e.printStackTrace();
+//        }
+//        g2.drawImage(image2, 0, 0, gp.screenWidth,gp.screenHeight, null);
+//    }
     public void drawTitleScreen(){
-//        g2.setColor(new Color(0,0,0));
-//        g2.fillRect(0,0,gp.screenWidth, gp.screenHeight);
         try{
             image1 = ImageIO.read(getClass().getResourceAsStream("/tiles/116183.png"));
         }catch (IOException e){
@@ -159,7 +199,7 @@ public class UI  extends JPanel{
         }
 
         g2.drawString(text, x, y);
-        text = "SCORE";
+        text = "SETTING";
         x = gp.tileSize*12;
         y = gp.tileSize*5;
         g2.drawString(text, x, y);
@@ -188,5 +228,26 @@ public class UI  extends JPanel{
         int lenght = (int)g2.getFontMetrics().getStringBounds(text,g2).getWidth();
         int x= gp.screenWidth - lenght*14/5;
         return  x;
+    }
+    public void drawOptionScreen(){
+
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(32F));
+
+        //SUB WINDOW
+        int frameX = gp.tileSize*2;
+        int frameY = gp.tileSize;
+        int frameWidth = gp.tileSize*4;
+        int frameHeight = gp.tileSize*6;
+        drawSubWinow(frameX,frameY,frameWidth, frameHeight);
+    }
+    public void drawSubWinow(int x, int y, int width, int height){
+        Color c = new Color(255,255,255);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y, width, height, 35,35);
+
+        c = new Color(0,0,0,210);
+        g2.setColor(c);
+        g2.fillRoundRect(x+5, y+5, width-10, height-10, 25,25);
     }
 }

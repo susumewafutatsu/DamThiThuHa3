@@ -1,6 +1,7 @@
 package Main;
 
 import entitty.Entity;
+import entitty.Player;
 
 public class CollisionChecker {
     GamePanel gp;
@@ -132,7 +133,6 @@ public class CollisionChecker {
 
                 target[i].soliArea.x = target[i].worldX + target[i].soliArea.x;
                 target[i].soliArea.y = target[i].worldY + target[i].soliArea.y;
-
                 switch(entity.direction) {
                     case "up":
                         entity.soliArea.y -= entity.speed;

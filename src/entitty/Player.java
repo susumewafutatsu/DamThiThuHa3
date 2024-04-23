@@ -43,8 +43,8 @@ public class Player extends Entity{
     }
     public void setDefaultValues(){
         //let's start
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
+        worldX = gp.tileSize * 24;
+        worldY = gp.tileSize * 56;
         speed = 5;
         direction = "down";
     }
@@ -95,7 +95,7 @@ public class Player extends Entity{
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
-
+            gp.keyH.enterPressed = false;
             //IF COLLISION IS FALSE, PLAYER CAN MOVE
             if (collisionOn == false){
                 switch (direction){
@@ -131,20 +131,19 @@ public class Player extends Entity{
                     gp.obj[i] = null;
                     gp.ui.showMessage("You got a body!");
                     break;
-                case "coffin":
-                    if (hasKey == 5){
-                        gp.ui.showMessage("Finish");
-                        gp.ui.gameFinished = true;
-                        break;
-
-                    }else {gp.ui.showMessage("You need most all body parts");}
-                    System.out.println("Head"+hasKey);
-                    break;
             }
+            if (hasKey == 5){
+                gp.gameState = gp.gameWinState;
+            }
+
 
         }
     }
-
+    public void setDefaultPositions(){
+        worldX = gp.tileSize*23;
+        worldY = gp.tileSize*21;
+        direction = "down";
+    }
     public void draw(Graphics2D g2){
         BufferedImage image = null;
 

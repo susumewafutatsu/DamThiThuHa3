@@ -11,8 +11,6 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JPanel;
 
 /**
@@ -31,12 +29,12 @@ public class GamePanel extends JPanel implements Runnable{
     public final int screenHeight= tileSize * maxScreenRow;//576 pixels
 
     //WORLD SETTINGS
-    public final int maxWorldCol = 50;
-    public final int maxWorldRow = 50;
+    public final int maxWorldCol = 56;
+    public final int maxWorldRow = 60;
     //FPS
     int  FPS = 60;
     public TileManager tileM = new TileManager(this);
-    KeyHandler keyH = new KeyHandler(this);
+    public KeyHandler keyH = new KeyHandler(this);
     Sound music = new Sound();
     Sound se = new Sound();
     public CollisionChecker cChecker = new CollisionChecker(this);
@@ -56,7 +54,9 @@ public class GamePanel extends JPanel implements Runnable{
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int optionState = 3;
     public final int gameOverState = 6;
+    public final int gameWinState = 5;
 
 
     public GamePanel(){
@@ -70,7 +70,6 @@ public class GamePanel extends JPanel implements Runnable{
     public void setupGame(){
         aSetter.setObject();
         aSetter.setNPC();
-        //playMusic(0);
         gameState = titleState;
         eManager.setup();
     }
@@ -158,6 +157,15 @@ public class GamePanel extends JPanel implements Runnable{
             ui.draw(g2);
             g2.dispose();
         }
+    }
+    public void retry(){
+        player.setDefaultPositions();
+        aSetter.setNPC();
+    }
+    public void restart(){
+        player.setDefaultPositions();
+        aSetter.setObject();
+        aSetter.setNPC();
     }
     public void  playMusic(int i){
 
