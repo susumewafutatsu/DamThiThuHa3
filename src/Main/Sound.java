@@ -10,9 +10,9 @@ public class Sound {
     URL soundURL[] = new URL[30];
 
     public  Sound(){
-
         soundURL[0] = getClass().getResource("/sound/wrong-place-129242.wav");
         soundURL[1] = getClass().getResource("/sound/jump-scare_1-66858.wav");
+        soundURL[2] = getClass().getResource("/sound/horror-music-box-147341");
     }
     public  void  setFile(int i){
         try{

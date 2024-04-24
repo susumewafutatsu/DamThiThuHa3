@@ -21,7 +21,8 @@ public class UI  extends JPanel{
     public boolean gameFinished = false;
     public int commanNum = 0;
     public int titleScreenState = 0;
-    public int day = 0;
+    public int day = 1;
+    public boolean dayUpdated = false;
 
     BufferedImage image1 = null;
     BufferedImage image2 = null;
@@ -92,6 +93,7 @@ public class UI  extends JPanel{
         //Game over state
         if (gp.gameState == gp.gameOverState){
             drawGameOverScreen();
+
         }
         //Win state
         if(gp.gameState == gp.gameWinState){
@@ -101,10 +103,23 @@ public class UI  extends JPanel{
         if(gp.gameState == gp.optionState){
             drawOptionScreen();
         }
+        //introducts
+        if(gp.gameState == gp.gameInstruction){
+            drawInstructionsScreen();
+        }
+    }
+    public void resetDayUpdated() {
+        dayUpdated = false;
     }
     public void drawGameOverScreen(){
 //        g2.setColor(new Color(0,0,0,150));
 //        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+        if (!dayUpdated) {
+            // Cập nhật giá trị của day
+            day++;
+            // Đánh dấu rằng đã cập nhật day
+            dayUpdated = true;
+        }
         try{
             image1 = ImageIO.read(getClass().getResourceAsStream("/tiles/Untitled.png"));
         }catch (IOException e){
@@ -116,11 +131,10 @@ public class UI  extends JPanel{
         String text;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,40F));
         g2.setColor(Color.red);
-        day=day+1;
         text = "Day";
         x = gp.tileSize*12;
         y = gp.tileSize*5;
-        g2.drawString(text+day, x, y);
+        g2.drawString(text+" "+ day, x, y);
         // Retry
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,40F));
         g2.setColor(Color.red);
@@ -231,16 +245,40 @@ public class UI  extends JPanel{
     }
     public void drawOptionScreen(){
 
-        g2.setColor(Color.white);
-        g2.setFont(g2.getFont().deriveFont(32F));
-
-        //SUB WINDOW
-        int frameX = gp.tileSize*2;
-        int frameY = gp.tileSize;
-        int frameWidth = gp.tileSize*4;
-        int frameHeight = gp.tileSize*6;
-        drawSubWinow(frameX,frameY,frameWidth, frameHeight);
     }
+    public void drawInstructionsScreen() {
+        // Draw background or any other elements for the instructions screen
+        g2.setColor(Color.BLACK);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        // Draw title for the instructions screen
+        g2.setFont(arial_80);
+        g2.setColor(Color.WHITE);
+        String title = "Instructions";
+        int titleWidth = g2.getFontMetrics().stringWidth(title);
+        g2.drawString(title, (gp.screenWidth - titleWidth) / 2, gp.tileSize * 2);
+
+        // Draw instructions text
+        g2.setFont(arial_40);
+        g2.setColor(Color.WHITE);
+        String instruction1 = "Use arrow keys to move.";
+        String instruction2 = "Collect body to open chest.";
+        String instruction3 = "Avoid obstacles and enemies.";
+        String instruction4 = "Reach the exit to complete the level.";
+
+        int instructionX = gp.tileSize * 2;
+        int instructionY = gp.tileSize * 5;
+        int lineHeight = g2.getFontMetrics().getHeight();
+
+        g2.drawString(instruction1, instructionX, instructionY);
+        g2.drawString(instruction2, instructionX, instructionY + lineHeight);
+        g2.drawString(instruction3, instructionX, instructionY + 2 * lineHeight);
+        g2.drawString(instruction4, instructionX, instructionY + 3 * lineHeight);
+
+        // Draw navigation instructions or any other elements for the instructions screen
+        // You can add code here to draw navigation instructions or any other UI elements
+    }
+
     public void drawSubWinow(int x, int y, int width, int height){
         Color c = new Color(255,255,255);
         g2.setColor(c);
