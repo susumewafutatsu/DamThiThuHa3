@@ -22,7 +22,7 @@ public class UI  extends JPanel{
     public int commanNum = 0;
     public int titleScreenState = 0;
     public int day = 0;
-
+    public boolean dayUpdated = false;
     BufferedImage image1 = null;
     int subState = 0;
 
@@ -96,6 +96,12 @@ public class UI  extends JPanel{
         }
     }
     public void drawGameOverScreen(){
+        if (!dayUpdated) {
+            // Cập nhật giá trị của day
+            day++;
+            // Đánh dấu rằng đã cập nhật day
+            dayUpdated = true;
+        }
         try{
             image1 = ImageIO.read(getClass().getResourceAsStream("/tiles/Untitled.png"));
         }catch (IOException e){
@@ -107,11 +113,10 @@ public class UI  extends JPanel{
         String text;
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,40F));
         g2.setColor(Color.red);
-        day=day+1;
         text = "Day";
         x = gp.tileSize*12;
         y = gp.tileSize*5;
-        g2.drawString(text+day, x, y);
+        g2.drawString(text+' '+day, x, y);
         // Retry
         g2.setFont(g2.getFont().deriveFont(Font.BOLD,40F));
         g2.setColor(Color.red);

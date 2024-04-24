@@ -147,6 +147,7 @@ public class KeyHandler implements KeyListener{
             if (gp.ui.commanNum == 0) {
                 gp.gameState = gp.playState;
                 gp.retry();
+                gp.ui.dayUpdated = false;
             }
             else if (gp.ui.commanNum == 1) {
                 gp.gameState = gp.titleState;
