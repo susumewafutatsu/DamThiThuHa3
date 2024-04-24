@@ -12,7 +12,7 @@ public class Sound {
     public  Sound(){
         soundURL[0] = getClass().getResource("/sound/wrong-place-129242.wav");
         soundURL[1] = getClass().getResource("/sound/jump-scare_1-66858.wav");
-        soundURL[2] = getClass().getResource("/sound/horror-music-box-147341");
+        soundURL[2] = getClass().getResource("/sound/horror-music-box-147341.wav");
     }
     public  void  setFile(int i){
         try{

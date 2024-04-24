@@ -140,6 +140,7 @@ public class UI  extends JPanel{
         if (commanNum == 1){
             g2.drawString(">",x-40,y);
         }
+        gp.playSE(1);
     }
     public void drawGameWinScreen(){
         g2.setColor(new Color(0,0,0));
@@ -183,9 +184,8 @@ public class UI  extends JPanel{
         g2.setFont(arial_40);
         g2.setColor(Color.WHITE);
         String instruction1 = "Use arrow keys to move.";
-        String instruction2 = "Collect keys to unlock doors.";
+        String instruction2 = "Collect the body.";
         String instruction3 = "Avoid obstacles and enemies.";
-        String instruction4 = "Reach the exit to complete the level.";
 
         int instructionX = gp.tileSize * 2;
         int instructionY = gp.tileSize * 5;
@@ -194,7 +194,6 @@ public class UI  extends JPanel{
         g2.drawString(instruction1, instructionX, instructionY);
         g2.drawString(instruction2, instructionX, instructionY + lineHeight);
         g2.drawString(instruction3, instructionX, instructionY + 2 * lineHeight);
-        g2.drawString(instruction4, instructionX, instructionY + 3 * lineHeight);
 
         // Draw navigation instructions or any other elements for the instructions screen
         // You can add code here to draw navigation instructions or any other UI elements
