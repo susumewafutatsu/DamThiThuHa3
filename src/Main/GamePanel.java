@@ -167,17 +167,17 @@ public class GamePanel extends JPanel implements Runnable{
         aSetter.setObject();
         aSetter.setNPC();
     }
-    public void  playMusic(int i){
-
-        music.setFile(i);
-        music.play();
-        music.loop();
-    }
-    public void stopMusic(){
-        music.stop();
-    }
-    public void playSE(int i){
-        se.setFile(i);
-        se.play();
-    }
+//    public void  playMusic(int i){
+//
+//        music.setFile(i);
+//        music.play();
+//        music.loop();
+//    }
+//    public void stopMusic(){
+//        music.stop();
+//    }
+//    public void playSE(int i){
+//        se.setFile(i);
+//        se.play();
+//    }
 }

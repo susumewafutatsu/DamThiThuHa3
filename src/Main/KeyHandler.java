@@ -49,12 +49,12 @@ public class KeyHandler implements KeyListener{
             if (code == KeyEvent.VK_W){
                 gp.ui.commanNum--;
                 if(gp.ui.commanNum<0){
-                    gp.ui.commanNum = 2;
+                    gp.ui.commanNum = 3;
                 }
             }
             if (code == KeyEvent.VK_S){
                 gp.ui.commanNum++;
-                if(gp.ui.commanNum>2){
+                if(gp.ui.commanNum>3){
                     gp.ui.commanNum = 0;
                 }
             }
@@ -66,12 +66,20 @@ public class KeyHandler implements KeyListener{
                     //
                 }
                 if(gp.ui.commanNum == 2){
+                    gp.gameState = gp.optionState;
+                }
+                if(gp.ui.commanNum == 3){
                     System.exit(0);
                 }
             }
-        }//gameover state
+        }
+        //gameover state
         else if (gp.gameState == gp.gameOverState) {
             gameOverState(code);
+        }
+        //win state
+        else if (gp.gameState == gp.gameWinState) {
+            gameWinState(code);
         }
         //Play state
         if(gp.gameState == gp.playState) {
@@ -117,7 +125,9 @@ public class KeyHandler implements KeyListener{
                 gp.gameState = gp.playState;
             }
         }
-
+        if(gp.gameState == gp.optionState){
+            optionState(code);
+        }
     }
     public void gameOverState(int code){
 
@@ -126,14 +136,12 @@ public class KeyHandler implements KeyListener{
             if (gp.ui.commanNum < 0) {
                 gp.ui.commanNum = 1;
             }
-//            gp.playSE(9);
         }
         if (code == KeyEvent.VK_S) {
             gp.ui.commanNum++;
             if (gp.ui.commanNum > 1) {
                 gp.ui.commanNum = 0;
             }
-//            gp.playSE(9);
         }
         if (code == KeyEvent.VK_ENTER) {
             if (gp.ui.commanNum == 0) {
@@ -146,5 +154,31 @@ public class KeyHandler implements KeyListener{
             }
         }
     }
-
+    public void gameWinState(int code){
+        if (code == KeyEvent.VK_ENTER) {
+            gp.gameState = gp.titleState;
+            gp.restart();
+        }
+    }
+    public void optionState(int code){
+        if (code == KeyEvent.VK_ENTER){
+            enterPressed =true;
+        }
+        int maxCommanNum = 0;
+        switch (gp.ui.subState){
+            case 0: maxCommanNum = 5;
+        }
+        if(code == KeyEvent.VK_W){
+            gp.ui.commanNum--;
+            if(gp.ui.commanNum < 0){
+                gp.ui.commanNum = maxCommanNum;
+            }
+        }
+        if(code == KeyEvent.VK_S){
+            gp.ui.commanNum++;
+            if(gp.ui.commanNum > maxCommanNum){
+                gp.ui.commanNum = 0;
+            }
+        }
+    }
 }

@@ -24,7 +24,7 @@ public class UI  extends JPanel{
     public int day = 0;
 
     BufferedImage image1 = null;
-    BufferedImage image2 = null;
+    int subState = 0;
 
     public UI(GamePanel gp){
         this.gp = gp;
@@ -50,19 +50,12 @@ public class UI  extends JPanel{
         if(gp.gameState == gp.titleState){
             drawTitleScreen();
         }
-        //PLAY STATE
+//        //PLAY STATE
         if (gp.gameState == gp.playState){
             //DO playState stuff later
             if (gameFinished == true){
                 g2.setFont(arial_80);
                 g2.setColor(Color.white);
-
-                String text;
-                int textLength;
-                int x; int y;
-
-                text = "Congratulations";
-                textLength = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
             }
             else {
                 g2.setFont(arial_40);
@@ -103,8 +96,6 @@ public class UI  extends JPanel{
         }
     }
     public void drawGameOverScreen(){
-//        g2.setColor(new Color(0,0,0,150));
-//        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         try{
             image1 = ImageIO.read(getClass().getResourceAsStream("/tiles/Untitled.png"));
         }catch (IOException e){
@@ -141,6 +132,8 @@ public class UI  extends JPanel{
         }
     }
     public void drawGameWinScreen(){
+        g2.setColor(new Color(0,0,0));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
         int x;
         int y;
         String text;
@@ -150,8 +143,8 @@ public class UI  extends JPanel{
             e.printStackTrace();
         }
         g2.drawImage(image1, 0, 0, null);
-        g2.setFont(g2.getFont().deriveFont (Font.BOLD, 80f));
-        text = "TOBE CONTINUE...";
+        g2.setFont(g2.getFont().deriveFont (Font.BOLD, 70f));
+        text = "THE END...?";
         // Shadow
         g2.setColor(Color.black);
         x = gp.tileSize*10;
@@ -185,8 +178,14 @@ public class UI  extends JPanel{
         int x,y;String text;
         text = "NEW GAME";
         x = gp.tileSize*2;
-        y = gp.tileSize*5;
+        y = gp.tileSize/12*60;
         if (commanNum == 0){
+            g2.setColor(Color.black);
+            g2.drawString(text, x, y);
+            x = gp.tileSize*2;
+            y = gp.tileSize/12*59;
+            g2.setColor(Color.WHITE);
+            g2.drawString(text, x, y);
             g2.drawString(">",x-gp.tileSize/2,y);
         }
 
@@ -195,15 +194,27 @@ public class UI  extends JPanel{
         x = gp.tileSize*2;
         y = gp.tileSize/12*80;
         if (commanNum == 1){
+            g2.setColor(Color.black);
+            g2.drawString(text, x, y);
+            x = gp.tileSize*2;
+            y = gp.tileSize/12*79;
+            g2.setColor(Color.WHITE);
+            g2.drawString(text, x, y);
             g2.drawString(">",x-gp.tileSize/2,y);
         }
 
         g2.drawString(text, x, y);
         text = "SETTING";
         x = gp.tileSize*12;
-        y = gp.tileSize*5;
+        y = gp.tileSize/12*60;
         g2.drawString(text, x, y);
         if (commanNum == 2){
+            g2.setColor(Color.black);
+            g2.drawString(text, x, y);
+            x = gp.tileSize*12;
+            y = gp.tileSize/12*59;
+            g2.setColor(Color.WHITE);
+            g2.drawString(text, x, y);
             g2.drawString(">",x-gp.tileSize/2,y);
         }
 
@@ -213,6 +224,12 @@ public class UI  extends JPanel{
         y = gp.tileSize/12*80;
         g2.drawString(text, x, y);
         if (commanNum == 3){
+            g2.setColor(Color.black);
+            g2.drawString(text, x, y);
+            x = gp.tileSize*12;
+            y = gp.tileSize/12*79;
+            g2.setColor(Color.WHITE);
+            g2.drawString(text, x, y);
             g2.drawString(">",x-gp.tileSize/2,y);
         }
     }
@@ -230,16 +247,85 @@ public class UI  extends JPanel{
         return  x;
     }
     public void drawOptionScreen(){
-
+        try{
+            image1 = ImageIO.read(getClass().getResourceAsStream("/tiles/116183.png"));
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+        g2.drawImage(image1, 0, 0, gp.screenWidth,gp.screenHeight, null);
         g2.setColor(Color.white);
         g2.setFont(g2.getFont().deriveFont(32F));
 
         //SUB WINDOW
-        int frameX = gp.tileSize*2;
+        int frameX = gp.tileSize*5;
         int frameY = gp.tileSize;
-        int frameWidth = gp.tileSize*4;
+        int frameWidth = gp.tileSize*5;
         int frameHeight = gp.tileSize*6;
         drawSubWinow(frameX,frameY,frameWidth, frameHeight);
+
+        switch (subState){
+            case 0: options_top(frameX, frameY); break;
+            case 1: break;
+            case 2: break;
+        }
+    }
+    public void options_top(int frameX, int frameY){
+        int textX;
+        int textY;
+        g2.setColor(Color.white);
+        g2.setFont(g2.getFont().deriveFont(40F));
+
+        //TILE
+        String text = "Setting";
+        textX = frameX + gp.tileSize/12*22;
+        textY = frameY + gp.tileSize;
+        g2.drawString(text, textX, textY);
+
+
+        g2.setFont(g2.getFont().deriveFont(32F));
+        //FULL SCREEN ON/OFF
+        textX = frameX + gp.tileSize;
+        textY += gp.tileSize/2;
+        g2.drawString("Full Screen", textX, textY);
+        if (commanNum == 0){
+            g2.drawString(">",textX-gp.tileSize/2,textY);
+        }
+
+        //MUSIC
+        textY += gp.tileSize/2;
+        g2.drawString("Music", textX, textY);
+        if (commanNum == 1){
+            g2.drawString(">",textX-gp.tileSize/2,textY);
+        }
+
+        //SE
+        textY += gp.tileSize/2;
+        g2.drawString("SE", textX, textY);
+        if (commanNum == 2){
+            g2.drawString(">",textX-gp.tileSize/2,textY);
+        }
+
+        //CONTROL
+        textY += gp.tileSize/2;
+        g2.drawString("Control", textX, textY);
+        if (commanNum == 3){
+            g2.drawString(">",textX-gp.tileSize/2,textY);
+        }
+
+        //END GAME
+        textY += gp.tileSize/2;
+        g2.drawString("End Game", textX, textY);
+        if (commanNum == 4){
+            g2.drawString(">",textX-gp.tileSize/2,textY);
+        }
+
+        //BACK
+        textX = frameX + gp.tileSize/12*25;
+        textY += gp.tileSize/12*26;
+        g2.drawString("Back", textX, textY);
+        if (commanNum == 5){
+            g2.drawString(">",textX-gp.tileSize/2,textY);
+        }
     }
     public void drawSubWinow(int x, int y, int width, int height){
         Color c = new Color(255,255,255);
