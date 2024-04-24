@@ -26,6 +26,7 @@ public class UI  extends JPanel{
     BufferedImage image1 = null;
     int subState = 0;
 
+
     public UI(GamePanel gp){
         this.gp = gp;
         arial_40 = new Font("Arial",Font.PLAIN,40);
@@ -93,6 +94,10 @@ public class UI  extends JPanel{
         //Option state
         if(gp.gameState == gp.optionState){
             drawOptionScreen();
+        }
+        //Introduct state
+        if(gp.gameState == gp.gameInstruction){
+            drawInstructionsScreen();
         }
     }
     public void drawGameOverScreen(){
@@ -162,14 +167,38 @@ public class UI  extends JPanel{
             g2.drawString(">",x-40,y);
         }
     }
-//    public void drawInstructions(){
-//        try{
-//            image2 = ImageIO.read(getClass().getResourceAsStream("/tiles/pngtree-3d-rendered-classroom-with-blood-a-terrifying-and-eerie.png"));
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
-//        g2.drawImage(image2, 0, 0, gp.screenWidth,gp.screenHeight, null);
-//    }
+    public void drawInstructionsScreen() {
+        // Draw background or any other elements for the instructions screen
+        g2.setColor(Color.BLACK);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        // Draw title for the instructions screen
+        g2.setFont(arial_80);
+        g2.setColor(Color.WHITE);
+        String title = "Instructions";
+        int titleWidth = g2.getFontMetrics().stringWidth(title);
+        g2.drawString(title, (gp.screenWidth - titleWidth) / 2, gp.tileSize * 2);
+
+        // Draw instructions text
+        g2.setFont(arial_40);
+        g2.setColor(Color.WHITE);
+        String instruction1 = "Use arrow keys to move.";
+        String instruction2 = "Collect keys to unlock doors.";
+        String instruction3 = "Avoid obstacles and enemies.";
+        String instruction4 = "Reach the exit to complete the level.";
+
+        int instructionX = gp.tileSize * 2;
+        int instructionY = gp.tileSize * 5;
+        int lineHeight = g2.getFontMetrics().getHeight();
+
+        g2.drawString(instruction1, instructionX, instructionY);
+        g2.drawString(instruction2, instructionX, instructionY + lineHeight);
+        g2.drawString(instruction3, instructionX, instructionY + 2 * lineHeight);
+        g2.drawString(instruction4, instructionX, instructionY + 3 * lineHeight);
+
+        // Draw navigation instructions or any other elements for the instructions screen
+        // You can add code here to draw navigation instructions or any other UI elements
+    }
     public void drawTitleScreen(){
         try{
             image1 = ImageIO.read(getClass().getResourceAsStream("/tiles/116183.png"));

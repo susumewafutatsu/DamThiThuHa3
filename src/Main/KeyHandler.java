@@ -63,7 +63,7 @@ public class KeyHandler implements KeyListener{
                     gp.gameState = gp.playState;
                 }
                 if(gp.ui.commanNum == 1){
-                    //
+                    gp.gameState = gp.gameInstruction;
                 }
                 if(gp.ui.commanNum == 2){
                     gp.gameState = gp.optionState;
@@ -80,6 +80,9 @@ public class KeyHandler implements KeyListener{
         //win state
         else if (gp.gameState == gp.gameWinState) {
             gameWinState(code);
+        }
+        if(code == KeyEvent.VK_ESCAPE){
+            gp.gameState = gp.titleState;
         }
         //Play state
         if(gp.gameState == gp.playState) {
